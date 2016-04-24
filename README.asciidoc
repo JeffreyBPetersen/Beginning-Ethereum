@@ -1,0 +1,77 @@
+== Beginning Smart Contract Development on Ethereum (April 2016)
+
+=== Disclaimer
+
+The Ethereum ecosystem is currently very young and under heavy development. Expect instability, poor documentation, and lack of understanding within the community to be the norm rather than the exception. Even then, things have improved dramatically in the past few months and that trend shows no signs of changing. Getting involved now means taking on much more frustration in exchange for very early adoption of some very interesting technology.
+
+=== Requirements
+* A computer running Windows, OSX, or Ubuntu.
+* The latest release of the https://github.com/ethereum/webthree-umbrella/releases[webthree-umbrella development toolset].
+
+=== Getting Started with the Mix IDE
+
+*Install* the webthree-umbrella toolset according to the instructions for your system on https://github.com/ethereum/webthree-umbrella/releases[the releases page].
+
+==== Using the Sample Contract
+Go to where you installed the webthree-umbrella toolset and *launch* the Mix-ide executable.
+
+You should see a sample contract displayed. 
+
+_If not, then click "contract.sol" on the left side of Mix. If "contract.sol" is unavailable or doesn't contain a sample contract, then open the "File" menu, select "New Project", pick a directory and name, then select "contract.sol" once your new project is created._
+
+"contract.sol" is the smart contract itself. The sample contract allows anyone to set an unsigned integer value or retrieve the currently set value.
+
+To the immediate right of it you can see the rendered result of "index.html", an optional GUI for the contract.
+
+On the right side of Mist are the tools for managing a private test blockchain, which currently shows a single block in which the sample contract was automatically deployed.
+
+_If not visible, hit the icon at the top right that's made of two different rectangles and an arrow._
+
+On top of the rendered "index.html" you will see a button to the right of "Auto reload on save". *Click* that button to open a javascript console.
+
+*Enter* +web3.eth.defaultAccount = web3.eth.accounts[0]+ into the console. This sets a default account to be used for pushing transactions to the private test blockchain.
+
+You can now use the html GUI for the contract to store and retrieve unsigned integer values.
+
+==== Modifying the Sample Contract
+
+In "contract.sol" *replace* all occurrences of +uint+ with +string+ and *save*.
+
+In "index.html" *remove* +type=`'number'`+ from line 23 and *save*.
+
+*Click* the Rebuild Scenario button _(refresh symbol)_ that is now pulsating orange within the blockchain management tools.
+
+You can now use the html GUI for the contract to store and retrieve string values.
+
+==== Using the Modified Sample Contract Manually
+
+In the blockchain management tools, *click* the refresh symbol with a green checkmark in it on the line under "Block 1". It should now be crossed out.
+
+Next *click* the Rebuild Scenario button to create a new blockchain without including the transaction that initialized the contract.
+
+*Click* the adjacent "+" button and *select* "Add Transaction..."
+
+*Set* the transaction type to "Create Contract", *provide* an initial value to be stored (blank is acceptable), and *click* "OK".
+
+*Open* the "Add Transaction" menu again.
+
+*Select* "Transact with Contract".
+
+*Select* a function.
+
+If you picked "set", then *enter* a value.
+
+*Click* "OK".
+
+If you picked "set", then you should now be able to see the updated value stored in the contract at the bottom of the blockchain management tools.
+
+If you picked "get", then click the Expand Transaction arrow button on the right side of the bottom pending transaction. You should see "Output: undefined <your value here>" ("undefined" appears as a result of the return value being unnamed).
+
+=== Next Steps
+Now that you're familiar with the essentials to using Mix, you can start to experiment with more complex contracts.
+
+http://solidity.readthedocs.org/en/latest/solidity-by-example.html[Solidity by Example] (part of the official Solidity documentation) is a good place to look first.
+
+To interact with the main Ethereum network, https://github.com/ethereum/mist/releases[Mist] is recommended for contract management. Be prepared to wait a while for ~20GB of blockchain data to be synced to your computer; though you can stop it midway and continue syncing later.
+
+Once Mist is ready to go, https://ethereum.org/token provides an example of how to deploy contracts to the main Ethereum blockchain. To get the Ether you need to do so, https://shapeshift.io/[ShapeShift] is extremely convenient if you already have some Bitcoin handy. $1 worth should have you more than covered for initial deployment and transaction costs.
